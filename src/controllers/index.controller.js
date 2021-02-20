@@ -23,9 +23,10 @@ const getUserById = async( req, res ) => {
     // res.send('User Id: ' + req.params.id); 
 }
 
-const updateUser = async( req, res ) => {
+const updateUser = async ( req, res ) => {
     const id = req.params.id
-    const { name, email } = req.body; 
+    const { name, email } = req.body;
+
     const response = await pool.query('UPDATE users SET name = $1, email = $2 WHERE id = $3', [
         name, 
         email,
@@ -33,14 +34,11 @@ const updateUser = async( req, res ) => {
     ]);
     // const response = await pool.query('UPDATE FROM users WHERE id = $1', [id]);
     // console.log(response);
-    console.log(name);
-    console.log(email);
     res.json(`Usuario Actualizado: ${ id }`);
-
 }
 
 
-const deleteUserById = async( req, res ) => {
+const deleteUserById = async ( req, res ) => {
     const id = req.params.id
      
     res.json(`Usuario Eliminado: ${ id }`);
